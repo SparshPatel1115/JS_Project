@@ -26,11 +26,4 @@ events organized by various college cells. Say goodbye to the hassle of missing 
 
 document.getElementById("puevents").textContent =`${pu}`
 
-let bs = `Bhakti Sagar is a simple and easy-to-use Android app designed for followers of
-Hinduism. This app offers a collection of Aartis, Bhajans, and other devotional texts,
-allowing users to read and reflect on their spiritual practices anytime, anywhere. With
-a clean, static interface, Bhakti Sagar provides a seamless experience for users
-looking to access religious content, making it a perfect companion for daily prayers
-and rituals.`
 
-document.getElementById("bhaktisagar").textContent =`${bs}`

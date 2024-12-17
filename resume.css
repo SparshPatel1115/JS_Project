@@ -1,0 +1,52 @@
+
+#gitLogo {
+    width: 40px;
+    margin-left: 10px;
+    display: grid;
+    margin-top: -6rem;   
+}
+#gittxt{
+    margin-left: 10px;
+    font-size: small;
+}
+#name {
+    text-align: center;
+}
+#Contact {
+    margin-left: 33%;
+    color: black;
+}
+#Mail {
+    margin-left: 45%;
+    display: grid;
+    margin-top: -2.45rem;
+    color: black;
+}
+#AboutMe{
+    padding-left:7rem ;
+}
+#PUEVENTS{
+    width: 35px;
+    margin-left: 10px;
+    display: grid;
+}
+#PUEVENT{
+    width: 35px;
+    margin-top: -25px;
+    margin-left: 50px;
+    display: grid;
+    text-decoration:none;
+    color: black;
+}
+#puevents{
+    padding-left:7rem ;
+}
+
+#BHAKTISAGAR{
+    width: 30px;
+    margin-left: 10px;
+    display: grid;
+}
+#bhaktisagar{
+    padding-left: 7rem;
+}

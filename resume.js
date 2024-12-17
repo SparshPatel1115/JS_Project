@@ -1,11 +1,11 @@
 let fname;
-fname = "Dabhi Rajdeepsinh";
+fname = "Sparsh Patel";
 document.getElementById("name").textContent = `My name is ${fname}`;
 
-let Phone = "+919313465978"
+let Phone = "+919974975139"
 document.getElementById("Contact").textContent = `${Phone}`
 
-let email = "dabhirajdipsinh1410@gmail.com"
+let email = "sparshpatel1115@gmail.com"
 document.getElementById("Mail").textContent = `${email}`
 
 let aboutMe = `

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+#Result {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+}
+    </style>
+</head>
+<body>
+    UpperLimit:
+    <input type="number" id="upperLimit"><br>
+    <br>
+    lowerLimit:
+    <input type="number" id="lowerLimit">
+    <br>
+    <br>
+    RandomNumber:
+    <input type="number" id="guessNumber">
+    <br>
+    <br>
+    ComputerGuessNumber:
+    <input type="number" id="CGN">
+    <br><br>
+    <button id="btn" onclick="predict()">Result</button>
+
+    <label id="Result">---Result---</label>
+    
+</body>
+<script src="guessrandomnumber.js"></script>
+</html>

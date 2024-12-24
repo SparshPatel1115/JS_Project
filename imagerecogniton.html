@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Recognition</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1e1e1e;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        label:hover {
+            background-color: #1769aa;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            display: none;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:disabled {
+            background-color: #616161;
+            cursor: not-allowed;
+        }
+
+        button:hover:enabled {
+            background-color: #388e3c;
+        }
+
+        .results {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #b0bec5;
+        }
+
+        .results p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Recognition</h1>
+        <label for="image-input">Upload Image</label>
+        <input type="file" id="image-input" accept="image/*">
+        <div class="image-wrapper">
+            <img id="image-preview" alt="Preview">
+        </div>
+        <button id="classify-btn" disabled>Classify</button>
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const imageInput = document.getElementById("image-input");
+            const classifyBtn = document.getElementById("classify-btn");
+            const imagePreview = document.getElementById("image-preview");
+            const resultsDiv = document.getElementById("results");
+
+            let model;
+
+            // Load MobileNet Model
+            mobilenet.load().then((loadedModel) => {
+                model = loadedModel;
+                classifyBtn.disabled = false;
+                console.log("Model Loaded");
+            });
+
+            // Handle Image Upload
+            imageInput.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = "block";
+                        resultsDiv.textContent = ""; // Clear previous results
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Classify Image
+            classifyBtn.addEventListener("click", async () => {
+                if (model && imagePreview.src) {
+                    const predictions = await model.classify(imagePreview);
+                    displayResults(predictions);
+                } else {
+                    resultsDiv.textContent = "Please upload an image first.";
+                }
+            });
+
+            // Display Results
+            function displayResults(predictions) {
+                resultsDiv.innerHTML = predictions.map(prediction => 
+                    `<p><strong>${prediction.className}</strong>: ${(prediction.probability * 100).toFixed(2)}%</p>`
+                ).join('');
+            }
+        });
+    </script>
+</body>
+</html>
